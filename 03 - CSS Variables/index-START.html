@@ -25,7 +25,7 @@
   :root {
     --base: #ffc600;
     --spacing: 10px;
-    --blur: 1px;
+    --blur: 0px;
   }
 
   img {
@@ -65,17 +65,13 @@
     const controls = document.querySelectorAll('.controls input')
 
     function handleUpdate() {
-      const suffix = this.dataset.sizing || '';
-      console.log(this.name);
+      const suffix = this.dataset.sizing || '';  
       document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
-
     }
 
-    controls.forEach( control => control.addEventListener('change', handleUpdate));
-
-    controls.forEach( control => control.addEventListener('mousemove', handleUpdate));
-
-
+    controls.forEach( control => { control.addEventListener('change', handleUpdate)
+    control.addEventListener('mousemove', handleUpdate)
+    });
 
   </script>
 
