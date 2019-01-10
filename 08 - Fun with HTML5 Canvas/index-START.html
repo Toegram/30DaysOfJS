@@ -17,11 +17,11 @@
   canvas.width = window.innerWidth; //sets canvas height and width to window height and width
   canvas.height = window.innerHeight;
 
-  ctx.strokeStyle = '#BADA55' //need to set a color
-  ctx.lineJoin = 'round'  //sets what happens when canvas strokes meet
-  ctx.lineCap = 'round'  //sets what happens when you let go of stroke
-                        //MDN has many options for lineJoin and lineCap
-
+  ctx.strokeStyle = '#BADA55';//need to set a color
+  ctx.lineJoin = 'round';    //sets what happens when canvas strokes meet
+  ctx.lineCap = 'round';    //sets what happens when you let go of stroke
+                          //MDN has many options for lineJoin and lineCap
+  ctx.lineWidth = 100;
   function draw(e) {
     if(!isDrawing) return;
 
