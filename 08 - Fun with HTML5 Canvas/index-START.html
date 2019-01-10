@@ -13,27 +13,45 @@
   let isDrawing = 'false'; //will change when drawing
   let lastX = 0; //last known X and Y coordinates
   let lastY = 0;
+  let hue = 0;
+  let direction = true;
 
   canvas.width = window.innerWidth; //sets canvas height and width to window height and width
   canvas.height = window.innerHeight;
 
-  ctx.strokeStyle = '#BADA55';//need to set a color
+  ctx.strokeStyle = '#BADA55';//need to set an initial color
   ctx.lineJoin = 'round';    //sets what happens when canvas strokes meet
   ctx.lineCap = 'round';    //sets what happens when you let go of stroke
                           //MDN has many options for lineJoin and lineCap
-  ctx.lineWidth = 100;
+  ctx.lineWidth = 10;
+  ctx.globalCompositeOperation = "multiply"; //Many different effects available
+
+
   function draw(e) {
     if(!isDrawing) return;
+    if(hue >= 360) { hue = 0 } //resets hue value after 360deg
 
     console.log(e);
     //CTX is where we do all the drawing on canvas
 
+    ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
     ctx.lineTo(e.offsetX, e.offsetY);
     ctx.stroke();
-    [lastX, lastY] = [e.offsetX, e.offsetY]
+    [lastX, lastY] = [e.offsetX, e.offsetY];
 
+    hue++;
+
+    if(ctx.lineWidth >= 40 || ctx.lineWidth <= 1) {
+      direction = !direction
+    }
+
+    if(direction){
+      ctx.lineWidth++;
+    } else {
+      ctx.lineWidth--;
+    }
   }
 
   canvas.addEventListener('mousedown', (e) => {
