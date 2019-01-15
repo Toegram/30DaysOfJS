@@ -50,12 +50,36 @@
     // Viewing DOM Elements
       console.log(p)
       console.dir(p);
+      console.dir(p.onclick);
 
     // Grouping together
+      dogs.forEach( dog => {
+        // console.group(`${dog.name}`)
+        console.groupCollapsed(`${dog.name}`)
+        console.log(`${dog.name} is ${dog.age} years old`);
+        console.log(`in dog years that is ${dog.age * 7} years old`);
+        console.groupEnd(`${dog.name}`)
+      })
 
     // counting
+    console.count('Tony')
+    console.count('Danielle')
+    console.count('Danielle')
+    console.count('Tony')
+    console.count('Tony')
+    console.count('Danielle')
+    console.count('Danielle')
+    console.count('Tony')
+    console.count('Danielle')
 
     // timing
+      console.time('timing')
+        fetch('https://pokeapi.co/api/v2/pokemon')
+        .then(resp => resp.json())
+        .then(data => {
+          console.time('timing')
+          console.log(data);
+        })
 
   </script>
 </body>
