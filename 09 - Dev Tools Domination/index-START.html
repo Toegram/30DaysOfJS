@@ -18,22 +18,38 @@
     }
 
     // Regular
+      console.log('hello');
 
     // Interpolated
+      console.log('hello, i am a %s', 'poopy-boi');
 
     // Styled
+      console.log('make text %c green', 'color: green');
+      console.log('make text %c or BIG', 'font-size: 14px;');
+      console.log('make text %c or BIG AND GREEN WITH A TEXT-SHADOW ', 'color: green; font-size: 14px; text-shadow: 2px -2px 2px rgba(15,15,15,.15);');
 
     // warning!
+      console.warn("WARNING: message here");
 
     // Error :|
+      console.error("ERROR: error here");
 
     // Info
+      console.info("Crocodiles eat 4-5 people per year")
 
     // Testing
 
+      console.assert(1 === 2, "this message only fires if the statement is FALSE")
+
+      const p = document.querySelector('p');
+      console.assert(p.classList.contains('ouch'), 'Does not contain OUCH')
+
     // clearing
+      // console.clear()
 
     // Viewing DOM Elements
+      console.log(p)
+      console.dir(p);
 
     // Grouping together
 
