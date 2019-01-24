@@ -7,6 +7,23 @@
 </head>
 <body>
 <script>
+
+const codeArray = [];
+const secretCode = 'tonyrulez';
+
+window.addEventListener('keydown', (e) => konami(e) )
+
+function konami(e){
+  console.log(e.key);
+  codeArray.push(e.key);
+  codeArray.splice(-secretCode.length -1, codeArray.length - secretCode.length)
+  console.log(codeArray);
+  if(codeArray.join('').includes(secretCode)){
+    console.log("CODE ENTERED YOU DID IT");
+    cornify_add();
+  }
+}
+
 </script>
 </body>
 </html>
