@@ -20,7 +20,7 @@
       <li>Loading Tapas...</li>
     </ul>
     <form class="add-items">
-      <input type="text" name="item" placeholder="Item Name" required>
+      <input type="text" id="item" name="item" placeholder="Item Name" required>
       <input type="submit" value="+ Add Item">
     </form>
   </div>
@@ -30,9 +30,39 @@
   const itemsList = document.querySelector('.plates');
   const items = [];
 
+  function addItem(e){
+    e.preventDefault() //stops page from reloading MOD THREEEE
+
+    const text = (document.getElementById('item')).value
+
+    const item = {
+      text, //es6 syntax for text:text if key/val share name convention
+      done: false
+    }
+
+    items.push(item)
+    populateList(items, itemsList)
+    console.table(items)
+
+    this.reset() //resets input field. .reset() is a property on form
+  }
+
+  function populateList(plates = [], platesList){
+    platesList.innerHTML = plates.map( (plate, i) => {
+      return `
+        <li>
+          <input type="checkbox" data-index={i} id="item${i}" ${plate.done ? 'checked' : ''}/>
+          <label for="item${i}">${plate.text}</label>
+        </li>
+      `
+    }).join('')
+
+  }
+
+  addItems.addEventListener('submit', addItem)
+
 </script>
 
 
 </body>
 </html>
-
