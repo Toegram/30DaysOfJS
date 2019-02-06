@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mouse Shadow</title>
+</head>
+<body>
+
+  <form class="form">
+    <input name="input" type="text" placeholder="Trippify your text" class="input">
+  </form>
+
+  <div class="hero">
+    <h1 contenteditable>🔥TONY</h1>
+  </div>
+
+  <style>
+  html {
+    background-image: linear-gradient(to bottom right, rgba(0,209,255, .1)  25%, rgb(255,255,255) 50%, rgba(255,0,111, .1) 75%);
+    /* background-image: linear-gradient(to bottom right, rgb(0,26,41) 0%, rgb(54,0,50) 50%, rgb(61,51,0) 75%, rgb(0,24,1) 100%); */
+    color: black;
+    font-family: sans-serif;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  .hero {
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    transform: translateY(-100px);
+  }
+
+  h1 {
+    text-shadow: 10px 10px 0 rgba(0,0,0,1);
+    font-size: 100px;
+  }
+
+  .form {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .input {
+    font-size: 20px;
+    border-width: 8px;
+    width: 50%;
+    height: 40px;
+    border-color: rgba(0,135,246,1) rgba(0,255,235, .5) rgb(77,250,0) #fa00e8;
+    border-radius: 20px;
+    transform: scale(1.04);
+    outline: none;
+    text-align: center
+  }
+
+  </style>
+
+<script>
+const input = document.querySelector('.input')
+const hero = document.querySelector('.hero')
+const h1 = document.querySelector('h1')
+const walk = 100; //100px
+
+function shadow(e) {
+  // const width = hero.offsetWidth()
+  // const height = hero.offsetHeight()
+  const { offsetWidth: width, offsetHeight: height } = hero //OBJECT DESTRUCTORING
+  let {offsetX: x, offsetY: y} = e;
+
+  if(this !== e.target){
+    x = x + e.target.offsetLeft
+    y = y + e.target.offsetTop
+  }
+
+  const xWalk = Math.round((x / width * walk) - (walk / 1.5))
+  const yWalk = Math.round((y / height * walk) - (walk / 1.5))
+
+  h1.style.textShadow = `${xWalk}px ${yWalk}px 0 rgba(255,0,255,0.5),
+                         ${xWalk * -1}px ${yWalk}px 0 rgba(0,255,255,.5),
+                         ${yWalk}px ${xWalk * -1}px 0 rgba(255,255,0,0.5),
+                         ${yWalk * -1}px ${xWalk}px 0 rgba(0,255,0,0.5)`
+
+}
+
+function handleChange(e){
+  console.log(e.target.value)
+}
+
+hero.addEventListener('mousemove', shadow)
+input.addEventListener('onchange', handleChange)
+
+</script>
+</body>
+</html>
